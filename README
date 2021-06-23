@@ -1,0 +1,17 @@
+
+
+
+Incluyo dos JSON con usuarios de prueba para en insertar en el Postman en formato de JSON en la seccion de BODY, realizando un metodo POST a la url ../users
+----------------------------
+{
+    "email":"hola@gmail.com",
+    "firstName":"Juan Manuel",
+    "lastName":"Belgrano"
+}
+----------------------------
+{
+    "email":"mail@gmail.com",
+    "firstName":"Harry",
+    "lastName":"Potter"
+}
+----------------------------
