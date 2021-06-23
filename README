@@ -3,9 +3,13 @@ En caso de deployar la APP localmente, el puerto por default es http://localhost
 
 Este proyecto fue construido utilizando Gradle
 
-para esto se requiere descargar la totalidad de este repositorio y abrirlo en un IDE (intellij, eclipse, etc) desde el cual hay que ejecutar BootRun de Gradle o escribir "./gradlew bootRun" en consola; en caso de no tener Gradle instalado simplemente ejecutar el metodo main
+Para esto se requiere descargar la totalidad de este repositorio y abrirlo en un IDE (intellij, eclipse, etc) desde el cual hay que ejecutar BootRun de Gradle o escribir 
+"./gradlew bootRun" en consola; En caso de no tener Gradle instalado simplemente ejecutar el metodo main
 
-Incluyo dos JSON con usuarios de prueba para en insertar en el Postman en formato de RAW => JSON en la seccion de BODY, realizando un metodo POST a la url http://localhost:8080/users
+La aplicacion ya cuenta con 2 usuarios ya implementados desde el momento en que se realiza el deploy.
+
+Incluyo dos JSON con usuarios de prueba para en insertar en el Postman en formato de RAW => JSON en la seccion de BODY, realizando un metodo POST a la url 
+'http://localhost:8080/users'
 ----------------------------
 {
     "email":"hola@gmail.com",
@@ -19,3 +23,6 @@ Incluyo dos JSON con usuarios de prueba para en insertar en el Postman en format
     "lastName":"Potter"
 }
 ----------------------------
+
+Para realizar un metodo DELETE, introducir la url 'http://localhost:8080/users/{id del usuario a eliminar}', esto eliminara tanto el usuario como todos sus loans
+
