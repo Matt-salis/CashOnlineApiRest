@@ -6,7 +6,7 @@ Este proyecto fue construido utilizando Gradle
 Para esto se requiere descargar la totalidad de este repositorio y abrirlo en un IDE (intellij, eclipse, etc) desde el cual hay que ejecutar BootRun de Gradle o escribir 
 "./gradlew bootRun" en consola; En caso de no tener Gradle instalado se puede descargar desde https://gradle.org/install/
 
-La aplicacion ya cuenta con 2 usuarios ya implementados desde el momento en que se realiza el deploy.
+La aplicacion cuenta con 2 usuarios ya implementados desde el momento en que se realiza el deploy.
 
 Incluyo dos JSON con usuarios de prueba para en insertar en el Postman en formato de RAW => JSON en la seccion de BODY, realizando un metodo POST a la url 
 'http://localhost:8080/users'
