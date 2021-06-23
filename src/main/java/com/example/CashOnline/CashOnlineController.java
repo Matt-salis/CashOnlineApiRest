@@ -9,11 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Set;
+
 
 import static java.util.stream.Collectors.toList;
 
@@ -40,7 +39,10 @@ public class CashOnlineController {
     @DeleteMapping("/users/{id}")
     public ResponseEntity<Map<String, Object>> deleteUser(@PathVariable Long id) {
         if (userRepository.findById(id).isPresent()) {
+
+            loansRepository.deleteAll(loansRepository.findByUserId(userRepository.getById(id)).get());
             userRepository.delete(userRepository.findById(id).get());
+
             return new ResponseEntity<>(makeMap("Exito", "Usuario Eliminado!"), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(makeMap("Error", "Usuario no encontrado!"), HttpStatus.NOT_FOUND);
@@ -51,7 +53,7 @@ public class CashOnlineController {
     @GetMapping("/users/{id}")
     public Map<String, Object> findUser(@PathVariable Long id) {
 
-        Map<String, Object> dto = new LinkedHashMap<String, Object>();
+        Map<String, Object> dto = new LinkedHashMap<>();
 
         dto.put("id", userRepository.getById(id).getId());
         dto.put("email", userRepository.getById(id).getEmail());
@@ -66,7 +68,7 @@ public class CashOnlineController {
     @ResponseBody
     public Map<String, Object> findLoans(@RequestParam int page, @RequestParam int size, @RequestParam Long user_id) {
 
-        Map<String, Object> dto = new LinkedHashMap<String, Object>();
+        Map<String, Object> dto = new LinkedHashMap<>();
         if (userRepository.findById(user_id).isPresent()) {
             dto.put("items", userRepository.getById(user_id).getLoans().stream().map(this::makeLoansDTO).collect(toList()));
         }
@@ -75,7 +77,7 @@ public class CashOnlineController {
     }
 
     private Map<String, Object> makePagingDTO(@RequestParam int page, @RequestParam int size) {
-        Map<String, Object> dto = new LinkedHashMap<String, Object>();
+        Map<String, Object> dto = new LinkedHashMap<>();
         dto.put("page", page);
         dto.put("size", size);
         dto.put("total", 1500);
@@ -83,7 +85,7 @@ public class CashOnlineController {
     }
 
     private Map<String, Object> makeLoansDTO(Loans loans) {
-        Map<String, Object> dto = new LinkedHashMap<String, Object>();
+        Map<String, Object> dto = new LinkedHashMap<>();
         dto.put("id", loans.getId());
         dto.put("total", loans.getTotal());
         dto.put("userId", loans.getUserId().getId());
