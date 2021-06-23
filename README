@@ -1,7 +1,11 @@
 
+En caso de deployar la APP localmente, el puerto por default es http://localhost:8080
 
+Este proyecto fue construido utilizando Gradle
 
-Incluyo dos JSON con usuarios de prueba para en insertar en el Postman en formato de JSON en la seccion de BODY, realizando un metodo POST a la url ../users
+para esto se requiere descargar la totalidad de este repositorio y abrirlo en un IDE (intellij, eclipse, etc) desde el cual hay que ejecutar BootRun de Gradle o escribir "./gradlew bootRun" en consola; en caso de no tener Gradle instalado simplemente ejecutar el metodo main
+
+Incluyo dos JSON con usuarios de prueba para en insertar en el Postman en formato de JSON en la seccion de BODY, realizando un metodo POST a la url http://localhost:8080/users
 ----------------------------
 {
     "email":"hola@gmail.com",
