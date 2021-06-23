@@ -66,11 +66,15 @@ public class CashOnlineController {
 
     @GetMapping("/loans")
     @ResponseBody
-    public Map<String, Object> findLoans(@RequestParam int page, @RequestParam int size, @RequestParam Long user_id) {
+    public Map<String, Object> findLoans(@RequestParam int page, @RequestParam int size, @RequestParam(defaultValue = "-1") Long user_id) {
 
         Map<String, Object> dto = new LinkedHashMap<>();
-        if (userRepository.findById(user_id).isPresent()) {
-            dto.put("items", userRepository.getById(user_id).getLoans().stream().map(this::makeLoansDTO).collect(toList()));
+        if (user_id == -1) {
+            dto.put("items", loansRepository.findAll().stream().map(this::makeLoansDTO).collect(toList()));
+        } else {
+            if (userRepository.findById(user_id).isPresent()) {
+                dto.put("items", userRepository.getById(user_id).getLoans().stream().map(this::makeLoansDTO).collect(toList()));
+            }
         }
         dto.put("paging", makePagingDTO(page, size));
         return dto;
