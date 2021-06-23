@@ -39,8 +39,9 @@ public class CashOnlineController {
     @DeleteMapping("/users/{id}")
     public ResponseEntity<Map<String, Object>> deleteUser(@PathVariable Long id) {
         if (userRepository.findById(id).isPresent()) {
-
-            loansRepository.deleteAll(loansRepository.findByUserId(userRepository.getById(id)).get());
+            if (loansRepository.findByUserId(userRepository.getById(id)).isPresent()) {
+                loansRepository.deleteAll(loansRepository.findByUserId(userRepository.getById(id)).get());
+            }
             userRepository.delete(userRepository.findById(id).get());
 
             return new ResponseEntity<>(makeMap("Exito", "Usuario Eliminado!"), HttpStatus.OK);
